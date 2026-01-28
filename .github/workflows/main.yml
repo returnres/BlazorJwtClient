@@ -29,12 +29,12 @@ jobs:
 
       # 4️⃣ Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore ./BlazorJwtClient/BlazorJwtClient.sln
+        run: dotnet restore ./BlazorJwtClient.sln
 
       # 5️⃣ Build in Release
       - name: Build project
-        run: dotnet build --configuration Release ./BlazorJwtClient/BlazorJwtClient.sln
+        run: dotnet build --configuration Release ./BlazorJwtClient.sln
 
       # 6️⃣ Run tests (opzionale)
       - name: Run tests
-        run: dotnet test ./BlazorJwtClient/BlazorJwtClient.sln --no-build --verbosity normal
+        run: dotnet test ./BlazorJwtClient.sln --no-build --verbosity normal
