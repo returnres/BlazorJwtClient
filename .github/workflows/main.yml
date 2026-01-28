@@ -35,13 +35,6 @@ jobs:
       - name: Publish Blazor WASM
         run: dotnet publish BlazorJwtClient/BlazorJwtClient.csproj -c Release -o publish
 
-      # Step 6: Upload artifact (opzionale, utile per debug)
-      - name: Upload Publish Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: blazor-publish
-          path: publish/wwwroot
-
-      # Step 7: Run tests (opzionale)
+     # Step 6: Run tests (opzionale)
       - name: Run tests
         run: dotnet test ./BlazorJwtClient.sln --no-build --verbosity normal
