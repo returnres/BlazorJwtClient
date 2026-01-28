@@ -15,8 +15,16 @@ public class AuthService
 
     public async Task<bool> Login(string email, string password)
     {
-        var res = await _http.PostAsJsonAsync("api/auth/login/",
-            new { email, password });
+
+var res = await _http.PostAsJsonAsync(
+    "api/auth/login",
+    new
+    {
+         email,
+        password
+    });
+
+       
 
         if (!res.IsSuccessStatusCode)
             return false;
