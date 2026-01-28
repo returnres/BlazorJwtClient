@@ -34,6 +34,14 @@ jobs:
      # Step 5: Build e Publish Blazor WASM
       - name: Publish Blazor WASM
         run: dotnet publish BlazorJwtClient/BlazorJwtClient.csproj -c Release -o publish
+     
+     # Step 6: Publish Blazor WASM
+      - name: Copy publish files
+        run: |
+             rm -rf dist
+             mkdir dist
+             cp -r publish/wwwroot/* dist/
+
 
      # Step 6: Run tests (opzionale)
       - name: Run tests
