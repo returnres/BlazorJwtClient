@@ -29,20 +29,12 @@ jobs:
 
       # 4️⃣ Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore ./BlazorJwtClient.sln
+        run: dotnet restore ./BlazorJwtClient/BlazorJwtClient.sln
 
-     # Step 5: Build e Publish Blazor WASM
-      - name: Publish Blazor WASM
-        run: dotnet publish BlazorJwtClient/BlazorJwtClient.csproj -c Release -o publish
-     
-     # Step 6: Publish Blazor WASM
-      - name: Copy publish files
-        run: |
-             rm -rf dist
-             mkdir dist
-             cp -r publish/wwwroot/* dist/
+      # 5️⃣ Build in Release
+      - name: Build project
+        run: dotnet build --configuration Release ./BlazorJwtClient/BlazorJwtClient.sln
 
-
-     # Step 6: Run tests (opzionale)
+      # 6️⃣ Run tests (opzionale)
       - name: Run tests
-        run: dotnet test ./BlazorJwtClient.sln --no-build --verbosity normal
+        run: dotnet test ./BlazorJwtClient/BlazorJwtClient.sln --no-build --verbosity normal
