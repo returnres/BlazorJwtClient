@@ -1,6 +1,10 @@
 ﻿@page "/weather"
 @inject HttpClient Http
 
+@attribute [Authorize]
+
+<h3>Area Protetta</h3>
+
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather</h1>

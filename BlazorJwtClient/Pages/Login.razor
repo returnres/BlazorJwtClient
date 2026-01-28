@@ -1,0 +1,25 @@
+@page "/login"
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthService Auth
+@inject NavigationManager Nav
+@inject AuthenticationStateProvider AuthState
+
+<h3>Login</h3>
+
+<input @bind="email" placeholder="Email" />
+<input @bind="password" type="password" />
+<button @onclick="DOLogin">Login</button>
+
+@code {
+    string email = "";
+    string password = "";
+
+    async Task DOLogin()
+    {
+        if (await Auth.Login(email, password))
+        {
+            ((JwtAuthStateProvider)AuthState).Notify();
+            Nav.NavigateTo("/");
+        }
+    }
+}

@@ -1,39 +1,92 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Routing
+@inject NavigationManager Nav
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorJwtClient</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        <a class="navbar-brand" href="">WebAppBlazorS</a>
+
+        <button class="navbar-toggler"
+                title="Navigation menu"
+                @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass nav-scrollable">
     <nav class="flex-column">
+
+        <!-- Sempre visibile -->
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                Home
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
+
+        <AuthorizeView>
+
+            <!-- SOLO UTENTI AUTENTICATI -->
+            <Authorized>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="counter">
+                        Counter
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="weather">
+                        Weather
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <button class="nav-link btn btn-link"
+                            @onclick="Logout">
+                        Logout
+                    </button>
+                </div>
+
+            </Authorized>
+
+            <!-- SOLO NON AUTENTICATI -->
+            <NotAuthorized>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="login">
+                        Login
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="register">
+                        Register
+                    </NavLink>
+                </div>
+
+            </NotAuthorized>
+
+        </AuthorizeView>
+
     </nav>
 </div>
 
 @code {
+
     private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass =>
+        collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
+        => collapseNavMenu = !collapseNavMenu;
+
+    private void Logout()
     {
-        collapseNavMenu = !collapseNavMenu;
+        // qui andrai a:
+        // - cancellare token
+        // - notificare AuthenticationStateProvider
+        Nav.NavigateTo("login", true);
     }
 }

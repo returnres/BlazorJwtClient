@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlazorJwtClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+921b473423d01d1f760b3ea19bf99ae281f2f3ba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47ba90971eac3a1b2aa2b40a9dd098fdc010a825")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlazorJwtClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlazorJwtClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

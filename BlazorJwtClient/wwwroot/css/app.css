@@ -101,3 +101,14 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+.sidebar {
+    position: relative;
+    z-index: 1;
+}
+
+main {
+    position: relative;
+    z-index: 0;
+}
+

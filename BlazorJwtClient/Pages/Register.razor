@@ -1,0 +1,23 @@
+@page "/register"
+@inject HttpClient Http
+@inject NavigationManager Nav
+
+<h3>Register</h3>
+
+<input @bind="email" placeholder="Email" />
+<input @bind="password" type="password" placeholder="Password" />
+<button @onclick="DORegister">Register</button>
+
+@code {
+    string email = "";
+    string password = "";
+
+    async Task DORegister()
+    {
+        var res = await Http.PostAsJsonAsync("auth/register",
+            new { email, password });
+
+        if (res.IsSuccessStatusCode)
+            Nav.NavigateTo("/login");
+    }
+}
